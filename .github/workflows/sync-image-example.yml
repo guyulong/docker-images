@@ -13,12 +13,17 @@ on:
 # 工作流程任务（通常含有一个或多个步骤）
 jobs:
   build:
-    runs-on: ubuntu:24.10
+    runs-on: ubuntu:lastest
  
     # 在job中添加步骤来执行同步操作。在上述job中，添加步骤来执行skopeo命令，从docker.io仓库拉取镜像，并将其推送到阿里云个人仓库。
     steps:
     - name: Git pull
       uses: actions/checkout@v4
+
+    - name: Use Node.js 20
+      uses: actions/setup-node@v2
+      with:
+       node-version: node:20.17.0
  
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2.9.1
